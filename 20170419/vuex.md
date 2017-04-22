@@ -173,3 +173,20 @@
   - 如上getters
 - mapMutations
 - mapActions
+
+********************************************************************
+mutations and actions 学习
+
+mutations 是通过commit来触发action，且mutations是同步执行的
+actions 提交的是mutations，而不是直接变更状态，并且actions是可以异步的
+actions 是通过context参数来获取state and getters的（一个与 store 实例具有相同方法和属性的 context 对象）
+
+actions可以通过dispatch进行分发，eg: store.dispatch('increment')
+
+也就是说，利用mutations进行数据的改变，而利用actions进行数据的请求等异步操作
+
+getters getters相当于vuex的计算属性，新增的属性
+
+其中mapXXX 为vuex的辅助函数，需要在使用前进行引用
+
+********************************************************************
