@@ -16,6 +16,7 @@
   	store
   });
   ```
+
 - getters
   - vuex 允许使用getter（相当于state的计算属性）  
   
@@ -64,10 +65,9 @@
 	      console.log(rest);
 	    }
 	  }
-	})
-	
+	})	
   ```
-
+  
   - 你不能直接调用一个 mutation handler。这个选项更像是事件注册：“当触发一个类型为 increment 的 mutation 时，调用此函数。”要唤醒一个 mutation handler，你需要以相应的 type 调用 store.commit 方法：
 
   ```javascript
@@ -80,7 +80,6 @@
   	  }
   	}
   });
-
   ```
 
 - actions
@@ -88,53 +87,52 @@
   Action 函数接受一个与 store 实例具有相同方法和属性的 context 对象，因此你可以调用 context.commit 提交一个 mutation，或者通过 context.state 和 context.getters 来获取 state 和 getters  
 
   ```javascript
-  const store = new Vuex.Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment (state) {
-      state.count++
+    const store = new Vuex.Store({
+    state: {
+      count: 0
+    },
+    mutations: {
+      increment (state) {
+        state.count++
+      }
+    },
+    actions: {
+      increment (context) {
+        context.commit('increment')
+      }
     }
-  },
-  actions: {
-    increment (context) {
-      context.commit('increment')
-    }
-  }
-})
+  })
   ```
 
   - 分发action，目的在于模块间的通信
   - 组合actions 使用方式是利用promise或者是async/await来进行同步操作
-
 
 - modules
   - Vuex 允许我们将 store 分割到模块（module）每个模块拥有自己的 state、mutation、action、getters、甚至是嵌套子模块——从上至下进行类似的分割
   
   ```javascript
 	  const moduleA = {
-	  state: { ... },
-	  mutations: { ... },
-	  actions: { ... },
-	  getters: { ... }
-	}
+      state: { ... },
+      mutations: { ... },
+      actions: { ... },
+      getters: { ... }
+    }
 
-	const moduleB = {
-	  state: { ... },
-	  mutations: { ... },
-	  actions: { ... }
-	}
+    const moduleB = {
+      state: { ... },
+      mutations: { ... },
+      actions: { ... }
+    }
 
-	const store = new Vuex.Store({
-	  modules: {
-	    a: moduleA,
-	    b: moduleB
-	  }
-	})
+    const store = new Vuex.Store({
+      modules: {
+        a: moduleA,
+        b: moduleB
+      }
+    })
 
-	store.state.a // -> moduleA 的状态
-	store.state.b // -> moduleB 的状态
+    store.state.a // -> moduleA 的状态
+    store.state.b // -> moduleB 的状态
   ```
 
 - plugins
