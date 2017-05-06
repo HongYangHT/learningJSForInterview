@@ -23,6 +23,7 @@
 
     [options] 
     - url body headers params method responseType timeout before progress credentials emulateHTTP emulateJSON 
+    - before 拦截器回调函数
     - timeout 设置timeout的时间（毫秒）
     - emulateHTTP 对于不支持put 、delete 、patch,使用post代替并将header头中X-HTTP-Method-Override
     - emulateJSON 以html from 表单的形式来提交参数， 并且vue-resource 会自动检测提交的request.body 的类型是否是formData类型
@@ -79,3 +80,5 @@ resource.get({id:1},params).then().catch().then()
 
     })
   ```
+
+- interceptor(拦截器)  
